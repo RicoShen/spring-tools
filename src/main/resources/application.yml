@@ -1,0 +1,9 @@
+app:
+  name: ${project.name}
+  version: ${project.version}
+server:
+  servlet:
+    context-path: /tools
+spring:
+  profiles:
+    active: dev
