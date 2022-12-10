@@ -12,4 +12,7 @@ spring tools
   2.2 Springboot + WebSocket + Redis
   2.3 Springboot + WebSocket + Redis + ThreadPool
 
-3. 
+3. Jackson
+   1. JsonTypeIdResolver(Object、Property)
+   2. 
+          
