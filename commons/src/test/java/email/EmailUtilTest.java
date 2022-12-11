@@ -14,6 +14,7 @@ package email;
 
 import com.ricoandilet.commons.utils.email.BaseEmailUtil;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.Assert;
 
 /**
  * @author: rico
@@ -21,17 +22,16 @@ import org.junit.jupiter.api.Test;
  **/
 public class EmailUtilTest {
 
-    @Test
-    void baseEmail(){
+  @Test
+  void baseEmail() {
 
-        try {
-            BaseEmailUtil.sendTextEmail("Hello,rico",
-                    "ricomusk@126.com",
-                    "ricomusk@outlook.com",
-                    "ricoandilet@outlook.com",
-                    "text2");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    Assert.isTrue(
+        BaseEmailUtil.sendTextEmail(
+            "Hello,rico",
+            "ricomusk@126.com",
+            "ricomusk@outlook.com",
+            "ricoandilet@outlook.com",
+            "text2"),"send email fail.");
+           }
+
 }
