@@ -25,8 +25,11 @@ public class EmailUtilTest {
     void baseEmail(){
 
         try {
-            BaseEmailUtil baseEmailUtil = new BaseEmailUtil();
-            baseEmailUtil.sendEmail("","","","");
+            BaseEmailUtil.sendTextEmail("Hello,rico",
+                    "ricomusk@126.com",
+                    "ricomusk@outlook.com",
+                    "ricoandilet@outlook.com",
+                    "text2");
         } catch (Exception e) {
             e.printStackTrace();
         }

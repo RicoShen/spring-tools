@@ -19,11 +19,11 @@ import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -34,11 +34,26 @@ import java.util.Properties;
 public class BaseEmailUtil extends AbstractEmailUtil {
 
 
-    @Override
-    public boolean sendEmail(String subject,
-                      String recipient,
-                      String cc,
-                      String body) throws Exception {
+    public static boolean sendTextEmail(String subject,
+                                        String from,
+                                        String recipient,
+                                        String cc,
+                                        String body){
+        try{
+            return sendEmail(subject, from, List.of(recipient), List.of(cc),false, body);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    private static boolean sendEmail(String subject,
+                      String from,
+                      List<String> recipients,
+                      List<String> cc,
+                      boolean html,
+                      String body) throws Exception{
 
 
         Properties properties = new Properties();
@@ -53,19 +68,36 @@ public class BaseEmailUtil extends AbstractEmailUtil {
                 return new PasswordAuthentication("ricomusk@126.com", "CLXOLRFHXXEPLSUD");
             }
         });
+
+        // message
         MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("ricomusk@126.com"));
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress("ricomusk@outlook.com"));
-        message.setRecipient(Message.RecipientType.CC, new InternetAddress("ricoandilet@outlook.com"));
-        message.setSubject("Hello,rico","utf-8");
+        message.setFrom(new InternetAddress(from));
+        if (recipients != null && recipients.size() > 0) {
+          for (String email:recipients){
+             message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+          }
+        }
+        if (cc !=null && cc.size()>0){
+            for (String email:cc){
+                message.setRecipient(Message.RecipientType.CC, new InternetAddress(email));
+            }
+        }
+        message.setSubject(subject,"UTF-8");
+
         // body
         Multipart multipart = new MimeMultipart();
         BodyPart bodyPart = new MimeBodyPart();
+        if(html){
+            bodyPart.setContent(body,"text/html;utf-8");
+        }else {
+            bodyPart.setText(body);
+        }
+        multipart.addBodyPart(bodyPart);
+        message.setContent(multipart);
 
-        //bodyPart.setContent();
-        //multipart.addBodyPart(bodyPart);
-        message.setText("test");
         Transport.send(message);
-        return false;
+        return true;
     }
+
+
 }

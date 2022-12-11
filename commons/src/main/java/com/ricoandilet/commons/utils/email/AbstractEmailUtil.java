@@ -18,16 +18,4 @@ package com.ricoandilet.commons.utils.email;
  **/
 public abstract class AbstractEmailUtil {
 
-    /**
-     *
-     * @param subject
-     * @param recipient
-     * @param cc
-     * @param body
-     * @return boolean
-     */
-    abstract boolean sendEmail(String subject,
-                               String recipient,
-                               String cc,
-                               String body) throws Exception;
 }
