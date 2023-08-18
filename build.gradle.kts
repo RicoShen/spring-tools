@@ -23,6 +23,17 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
+    // json
+    implementation("com.alibaba:fastjson:2.0.32")
+    implementation("cn.hutool:hutool-core:5.8.12")
+    implementation("cn.hutool:hutool-extra:5.8.12")
+
+    // jwt
+    implementation("io.jsonwebtoken:jjwt-api:0.10.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.10.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.10.5")
+
+
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
