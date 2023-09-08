@@ -43,6 +43,7 @@ dependencies {
     // Domain verification
     implementation("dnsjava:dnsjava:3.5.2")
     implementation("com.amazonaws:aws-java-sdk-acm:1.12.535")
+    implementation ("com.amazonaws:aws-java-sdk-iam:1.12.546")
 
     // Elastic load balancing
     implementation("com.amazonaws:aws-java-sdk-elasticloadbalancingv2:1.12.537")

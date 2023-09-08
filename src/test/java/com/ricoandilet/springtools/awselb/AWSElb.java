@@ -7,10 +7,6 @@ import com.amazonaws.services.elasticloadbalancingv2.AmazonElasticLoadBalancingC
 import com.amazonaws.services.elasticloadbalancingv2.model.*;
 import org.junit.jupiter.api.Test;
 
-/**
- * @author: rico
- * @date: 2023/8/18
- **/
 public class AWSElb {
 
    private final String accessKey = "accessKey";
